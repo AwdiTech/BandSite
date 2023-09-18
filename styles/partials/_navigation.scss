@@ -1,0 +1,120 @@
+@use 'mixins.scss' as *;
+@use 'variables' as *;
+
+// Navigation Styling
+
+.main-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $primary-dark-color;
+    width: 100%;
+    min-width: $mobile-breakpoint;
+
+    @include tablet-breakpoint {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 1.75rem;
+    }
+
+
+    &__logo {
+        padding: 1.25rem 0 0.5rem 0;
+
+        @include tablet-breakpoint {
+            padding: 1.75rem 2rem 1.25rem 2rem;
+        }
+
+        @include desktop-breakpoint {
+            margin-left: 7.5em;
+            margin-top: 1em;
+            padding-right: 2.3rem;
+            padding-bottom: 1.75rem;
+        }
+    }
+
+
+    &__list {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+
+        @include tablet-breakpoint {
+            width: 70%;
+            gap: 3.25em;
+        }
+
+        @include desktop-breakpoint {
+            gap: 2.6em;
+        }
+
+
+        &__item {
+            list-style-type: none;
+            text-align: center;
+            width: 50%;
+            padding-bottom: 0.625rem;
+            border-bottom: 3.3px solid rgba(0, 0, 0, 0); //An invisible border on the other nav list items to keep the nav list items with hover effects
+
+
+            @include tablet-breakpoint {
+                margin-top: 2.2em;
+                padding: 0em 0.125em 1.5em 0.125em;
+                width: auto;
+            }
+            @include desktop-breakpoint {
+                padding-bottom: 2.5em;
+                margin-top: 3em;
+            }
+
+
+            &--active {
+                border-bottom: 3.3px solid $primary-light-color; //Gives the active nav list item a visible border color
+
+                .main-nav__list__link {
+                    color: $primary-light-color;
+                    font-weight: 600;
+                }
+            }
+
+        }
+
+
+        &__link {
+            color: $Mercury;
+        }
+    }
+
+
+    // Hover effect for nav links and logo
+    &--hover-effect {
+        position: relative;
+        transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+
+
+        // This before pseudo element is for the underline hover effect
+        &::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: white;
+            transform: scaleX(0); // This makes the underline invisible at first
+            transform-origin: right; // This makes the underline fade out to the right
+            transition: transform 0.3s ease-in-out;
+        }
+
+        &:hover {
+            color: white;
+            transform: scale(1.05);
+
+            &::before {
+                transform: scaleX(1); // This makes the underline visible when hovering
+                transform-origin: left; // This makes the underline come in from the left when hovering
+            }
+        }
+    }
+}

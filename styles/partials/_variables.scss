@@ -1,0 +1,17 @@
+$primary-dark-color: #323232; //bandsite-black primary text color for dark on light background. Dark background color.
+$secondary-light-color: #AFAFAF; //Secondary text color - Inactive CTA text color.
+$primary-light-color: #FFFFFF; //Primary text color for light on dark background. Light background color.
+
+$BandSite-DarkBlack: #000000; //bandsite-darkblack - CTA hover state
+$Mercury: #E1E1E1; //Divider line. Form field outline.
+$Alabaster: #FAFAFA; //Alternative light background color.
+
+
+
+$mobile-breakpoint: 320px;
+$tablet-breakpoint: 768px;
+$desktop-breakpoint: 1280px;
+
+// DESKTOP screen sizes are defined at 1280px, but are applied to screen sizes 1280px and greater. 
+// TABLET screen sizes are defined at 768px, but are applied to screen sizes from 768px to 1279px.
+// MOBILE screen sizes are defined at 320px, but are applied to screen sizes 767px and below

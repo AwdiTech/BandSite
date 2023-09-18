@@ -1,0 +1,151 @@
+@use 'partials/global.scss' as *;
+@use 'partials/variables' as *;
+@use 'partials/mixins.scss' as *;
+
+@use 'partials/navigation' as *;
+@use 'partials/hero-banner' as *;
+@use 'partials/footer' as *;
+
+
+
+// Main Content of Bio Page -- Biography Figure, Articles, Photo Gallery
+
+.main {
+    background-color: $primary-light-color;
+    padding: 1rem 1rem;
+    min-width: $mobile-breakpoint;
+
+
+    &-section {
+
+        @include tablet-breakpoint {
+            width: 80%;
+            margin-left: 10%;
+        }
+        @include desktop-breakpoint {
+            width: 70%;
+            margin-left: 15%;
+        }
+    }
+
+
+    &__bio {
+        padding-bottom: 1.5rem;
+
+        @include tablet-breakpoint {
+            display: flex;
+            flex-direction: row;
+        }
+
+
+        &__paragraph {
+            padding-bottom: 1rem;
+
+            @include tablet-breakpoint {
+                width: 50%;
+                padding-right: 1.5em;
+            }
+        }
+    }
+
+
+    &__bio-title {
+        padding: 0.75rem 0;
+
+        @include tablet-breakpoint {
+            padding: 1.05em 0 0.75em;
+            margin-left: 3%;
+        }
+        @include desktop-breakpoint {
+            margin-left: 9%;
+        }
+    }
+
+
+    &__bio-subtitle {
+        padding: 0.5rem 0 1em;
+    }
+
+
+    &-figure {
+        width: 100%;
+
+        &__image {
+            width: 100%;
+            height: 45vw;
+            text-align: center;
+            margin-bottom: 0.75rem;
+            object-fit: cover;
+            object-position: center bottom;
+            min-height: 140px;
+
+            @include tablet-breakpoint {
+                height: 42vw;
+                margin-bottom: 2rem;
+                object-position: center center;
+            }
+            @include desktop-breakpoint {
+                height: 37vw;
+
+            }
+        }
+
+        &__quote {
+
+            @include desktop-breakpoint {
+                width: 77%;
+            }
+        }
+
+        &__quote-author {
+            padding: 0.75rem 0 1.25rem;
+
+            @include tablet-breakpoint {
+                margin-bottom: 1.5em;
+            }
+
+        }
+    }
+
+
+    &__photo-gallery {
+        background-color: $Alabaster;
+
+        @include tablet-breakpoint {
+            padding: 1.5rem;
+        }
+        @include desktop-breakpoint {
+            padding: 1.5rem 8rem 1.5rem;
+        }
+
+
+        &__title {
+            padding: 1em 0;
+
+        }
+
+
+        &__photos {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: 1fr;
+
+            @include tablet-breakpoint {
+                grid-template-columns: repeat(3, 1fr);
+                // This creates three equal columns. 1fr = 1 fraction of available space for each column
+                gap: 1.5rem;
+            }
+
+
+            &__item {
+                width: 100%;
+                filter: grayscale(100%);
+                transition: filter 0.3s ease-in-out;
+
+                &:hover {
+                    filter: grayscale(0%);
+                }
+            }
+        }
+    }
+}

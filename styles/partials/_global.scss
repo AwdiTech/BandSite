@@ -1,0 +1,112 @@
+@use 'mixins' as *;
+@use 'fonts' as *;
+
+
+// Reset
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Avenir Next';
+    list-style-type: none;
+    text-decoration: none;
+}
+
+// Page header
+h1 {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600; //h1 and h2 should be 700 according to style guide
+    font-family: 'Avenir Next';
+    font-style: normal;
+
+    @include tablet-breakpoint {
+        font-size: 60px;
+        line-height: 68px;
+    }
+}
+
+// Section header
+h2 {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+
+
+    @include tablet-breakpoint {
+        font-size: 36px;
+        line-height: 44px;
+    }
+}
+
+// Subheader
+h3 {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 600;
+
+    @include tablet-breakpoint {
+        font-size: 24px;
+        line-height: 32px;
+    }
+}
+
+h4{
+    font-weight: 600;
+}
+
+body {
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 400;
+
+    @include tablet-breakpoint {
+        font-size: 14px;
+        line-height: 22px;
+    }
+}
+
+footer {
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 400;
+
+    @include tablet-breakpoint {
+        font-size: 14px;
+        line-height: 20px;
+    }
+}
+
+label,
+button {
+    font-size: 10px;
+    line-height: 20px;
+    font-weight: 700;
+
+    @include tablet-breakpoint {
+        font-size: 12px;
+        line-height: 20px;
+    }
+}
+
+
+
+// Helper / Utility classes
+
+.logo {
+
+    width: 120px;
+    height: 20px;
+}
+
+.semi-bold {
+    font-weight: 600;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.regular {
+    font-weight: 400;
+}

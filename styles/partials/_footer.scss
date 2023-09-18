@@ -1,0 +1,137 @@
+@use 'mixins.scss' as *;
+@use 'variables' as *;
+
+
+// Footer Styling
+// Uses regular default display block for mobile, and switches to flexbox for tablet and desktop
+
+.footer {
+    background-color: $primary-dark-color;
+    color: $Mercury;
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-width: $mobile-breakpoint;
+
+
+    @include tablet-breakpoint {
+        padding: 2.5rem;
+    }
+    @include desktop-breakpoint {
+        padding: 2.5rem 10vw;
+    }
+
+
+    &__item {
+        padding: 0.5rem 0;
+    }
+
+    &__title {
+        font-weight: 600;
+    }
+
+
+    &-top {
+
+        @include tablet-breakpoint {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            gap: 2em;
+        }
+
+        &__sm-icons {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 2rem;
+            
+            @include tablet-breakpoint {
+                margin-left: 0.5rem;
+            }
+            @include desktop-breakpoint {
+                margin-left: 2rem;
+            }
+
+            &__icon {
+                height: 25px;
+            }
+
+        }
+    }
+
+
+    &-contacts {
+
+        @include tablet-breakpoint {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            gap: 3rem;
+            margin-top: 1.25em;
+        }
+        @include desktop-breakpoint {
+            gap: 4.5rem;
+        }
+
+
+        &__group {
+            margin-bottom: 1.5em;
+
+            .footer__item {
+                margin-bottom: 0.25em;
+
+                @include tablet-breakpoint {
+                    margin-bottom: 0.75em;
+                }
+
+            }
+        }
+    }
+
+
+    &-bottom {
+
+        &__copyright {
+            font-size: 0.85em;
+
+            @include tablet-breakpoint {
+                margin-top: 1.5rem;
+                font-size: 0.95em;
+            }
+            @include desktop-breakpoint {
+                font-size: 1em;
+            }
+
+        }
+    }
+
+
+    &__site-logo-link {
+        margin-top: 3em;
+
+        @include tablet-breakpoint {
+            position: absolute;
+            top: 1.125rem;
+            right: 2rem;
+        }
+        @include desktop-breakpoint {
+            margin-right: 8vw;
+        }
+        
+    }
+
+
+    &__mailto-link {
+        text-decoration: none;
+        color: $Mercury;
+        padding-bottom: 0;
+
+        &:hover {
+            color: $primary-light-color;
+            border-bottom: solid 1px $primary-light-color;
+        }
+    }
+
+}

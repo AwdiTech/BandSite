@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'Avenir Next';
+    src: url('/assets/Font/AvenirNextLTPro-Bold.otf') format('opentype'),
+        url('/assets/Font/Alternative%20files/AvenirNextLTProBold.ttf') format('truetype');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Avenir Next';
+    src: url('/assets/Font/AvenirNextLTPro-Demi.otf') format('opentype'),
+    url('/assets/Font/Alternative%20files/AvenirNextLTProDemi.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir Next';
+    src: url('/assets/Font/AvenirNextLTPro-Regular.otf') format('opentype'),
+    url('/assets/Font/Alternative%20files/AvenirNextLTPro.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
