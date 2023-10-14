@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/styles/shows.css">
+    <title>Bandsite - Shows</title>
+</head>
+
+<body>
+    <!--    Navigation   -->
+    <header>
+        <nav class="main-nav">
+            <a href="index.html" class="main-nav__logo main-nav--hover-effect">
+                <img class="logo" src="/assets/Logo/Logo-bandsite.svg" alt="Bandsite Logo">
+            </a>
+
+            <ul class="main-nav__list">
+                <li class="main-nav__list__item main-nav__list__item--active main-nav--hover-effect"><a
+                        class="main-nav__list__link" href="/index.html">Biography</a></li>
+                <li class="main-nav__list__item main-nav--hover-effect"><a class="main-nav__list__link"
+                        href="/pages/shows.html">Shows</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero-banner">
+    
+        <div class="hero-banner-main">
+            <h3 class="hero-banner-main__h3">Beautiful Beasts Album</h3>
+            <h1 class="hero-banner-main__h1">Queen of Yellow x For the Stings</h1>
+        </div>
+    
+        <div class="soundcloud-wrapper">
+        <iframe class="soundcloud-player" width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
+            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1242868615&color=%23ff5500&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
+    </div></section>
+
+
+    <!--    Main Content -- Event Shows List   -->
+    <main class="main">
+
+        <section class="shows">
+            <h2 class="shows__title">Shows</h2>
+
+            <section class="shows-list">
+
+                <article class="shows-list__subtitles-row">
+                    <p class="event-card__subtitle visible-block">DATE</p>
+                    <p class="event-card__subtitle visible-block">VENUE</p>
+                    <p class="event-card__subtitle visible-block">LOCATION</p>
+                    <p></p>
+                </article>
+
+                <!--  ---- Event Card Format -----
+                <article class="event-card">
+                    <p class="event-card__subtitle">DATE</p>
+                    <p class="event-card__date">Mon Sept 06 2021</p>
+                    <p class="event-card__subtitle">VENUE</p>
+                    <p class="event-card__venue">Ronald Lane</p>
+                    <p class="event-card__subtitle">LOCATION</p>
+                    <p class="event-card__location">San Francisco, CA</p>
+                    <button class="event-card__CTA-button">BUY TICKETS</button>
+                </article> -->
+            </section>
+
+        </section>
+    </main>
+
+    
+    <!--   Footer   -->
+    <footer class="footer">
+        <section class="footer-top footer__item">
+            <h2 class="footer__item footer__title">Get in Touch</h2>
+            <article class="footer-top__sm-icons footer__item">
+                <a href="https://www.instagram.com">
+                    <img class="footer-top__sm-icons__icon" src="/assets/Icons/SVG/Icon-instagram.svg"
+                        alt="instagram icon">
+                </a>
+                <a href="https://www.facebook.com">
+                    <img class="footer-top__sm-icons__icon" src="/assets/Icons/SVG/Icon-facebook.svg"
+                        alt="facebook icon">
+                </a>
+                <a href="https://www.twitter.com">
+                    <img class="footer-top__sm-icons__icon" src="/assets/Icons/SVG/Icon-twitter.svg" alt="twitter icon">
+                </a>
+            </article>
+        </section>
+
+        <section class="footer-contacts">
+            <div class="footer-contacts__group">
+                <p class="footer__item semi-bold">Cam Adams<br>The Bees Knees Management</p>
+                <p class="footer__item">503 Broadway Penthouse,<br>New York, NY 10012, USA</p>
+                <a class="footer__mailto-link footer__item"
+                    href="mailto:info@thebeesknees.com">info@thebeesknees.com</a>
+            </div>
+            <div class="footer-contacts__group">
+                <p class="footer__item semi-bold">Pearl Gregg<br>Limitless Artist Group</p>
+                <p class="footer__item">Booking Agent for<br>US / South America / Japan</p>
+                <a class="footer__mailto-link footer__item"
+                    href="mailto:pearl.gregg@limitlessag.com">pearl.gregg@limitlessag.com</a>
+            </div>
+            <div class="footer-contacts__group">
+                <p class="footer__item semi-bold">Carson Whyte<br>ARCH Entertainment</p>
+                <p class="footer__item">Booking Agent for<br>UK / EU / AU</p>
+                <a class="footer__mailto-link footer__item"
+                    href="mailto:cwhyte@archenterainment.co">cwhyte@archentertainment.co</a>
+            </div>
+        </section>
+
+        <a href="index.html" class="footer__site-logo-link footer__item">
+            <img class="logo" src="/assets/Logo/Logo-bandsite.svg" alt="Bandsite Logo">
+        </a>
+
+        <section class="footer-bottom footer__item">
+
+            <p class="footer-bottom__copyright">Copyright The Bees Knees © 2021 All Rights Reserved</p>
+        </section>
+    </footer>
+
+    <script src="/scripts/build-shows-page.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,204 @@
+@use 'partials/global.scss' as *;
+@use 'partials/variables' as *;
+@use 'partials/mixins.scss' as *;
+
+@use 'partials/navigation' as *;
+@use 'partials/shows-hero-banner' as *;
+@use 'partials/footer' as *;
+
+
+.shows {
+
+    &__title {
+        padding: 2rem 0 0 1rem;
+        display: block;
+
+        @include tablet-breakpoint {
+            margin-left: 4%;
+            padding: 3rem 0 0.5rem;
+        }
+
+        @include desktop-breakpoint {
+            margin-left: 9%;
+            padding: 3rem 0 2rem;
+            display: inline-block;
+            margin-top: 1rem;
+
+        }
+    }
+}
+
+.shows-list {
+    padding: 0 0 1rem;
+
+    @include tablet-breakpoint {
+        padding: 0 1rem 2.25rem;
+    }
+
+    @include desktop-breakpoint {
+        width: 70%;
+        margin-left: 25%;
+        margin-top: -5.25rem;
+    }
+
+    &__subtitles-row {
+        display: none;
+
+        @include tablet-breakpoint {
+            display: flex;
+            justify-content: left;
+            align-items: end;
+            width: 100%;
+            height: 56px;
+            padding: 0 1rem;
+
+            p {
+                flex-basis: 25%;
+                font-size: 0.75rem;
+            }
+        }
+
+        @include desktop-breakpoint {
+            display: grid;
+            grid-template-columns: 33.25% 23% 23% 20.75%;
+
+            margin-bottom: 1rem;
+            padding: 1rem 0rem 1rem 2rem;
+
+            p {
+
+                font-size: 0.85rem;
+            }
+        }
+    }
+
+
+}
+
+.event-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.175rem;
+    padding: 1rem 1rem;
+    border-bottom: 1px solid $Mercury;
+
+    @include tablet-breakpoint {
+        flex-direction: row;
+        align-items: center;
+        padding: 0.5rem 1rem;
+    }
+
+    @include desktop-breakpoint {
+        padding: 1rem 0rem 1rem 2rem;
+    }
+
+    &__subtitle {
+        color: $secondary-light-color;
+        font-weight: 600;
+        font-size: 0.6rem;
+        padding-top: 0.625rem;
+        display: block;
+
+        @include tablet-breakpoint {
+            display: none;
+        }
+    }
+
+    &__date {
+        font-weight: 600;
+
+        @include tablet-breakpoint {
+            flex-basis: 25%;
+            font-size: 0.85rem;
+        }
+
+        @include desktop-breakpoint {
+            font-size: 0.95rem;
+            flex-basis: 33%;
+        }
+    }
+
+    &__venue {
+        color: $BandSite-DarkBlack;
+        font-size: 0.8rem;
+
+        @include tablet-breakpoint {
+            flex-basis: 25%;
+            font-size: 0.85rem;
+        }
+
+        @include desktop-breakpoint {
+            font-size: 0.95rem;
+            flex-basis: 23%;
+        }
+    }
+
+    &__location {
+        color: $BandSite-DarkBlack;
+        font-size: 0.8rem;
+
+        @include tablet-breakpoint {
+            flex-basis: 25%;
+            font-size: 0.85rem;
+        }
+
+        @include desktop-breakpoint {
+            font-size: 0.95rem;
+            flex-basis: 23%;
+        }
+    }
+
+    &__CTA-button {
+        margin-top: 1rem;
+        width: 100%;
+        height: 40px;
+        padding: 0 32px;
+        background-color: $primary-dark-color;
+        color: $Mercury;
+        font-size: 0.9rem;
+        font-weight: 600;
+        padding-top: 2px;
+        border: none;
+        border-radius: 4px;
+
+
+        @include tablet-breakpoint {
+            flex-basis: 25%;
+        }
+
+        @include desktop-breakpoint {
+            max-width: 175px;
+            font-size: 1rem;
+            flex-basis: 23%;
+        }
+
+
+        &:hover {
+            background-color: $BandSite-DarkBlack;
+            cursor: pointer;
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+
+    &:hover {
+        background-color: $Alabaster;
+    }
+
+
+    &__active {
+        background-color: $Mercury;
+
+        &:hover {
+            background-color: $Mercury;
+        }
+    }
+
+}
+
+
+.visible-block {
+    display: block;
+}
