@@ -3,7 +3,8 @@
 @use 'partials/mixins.scss' as *;
 
 @use 'partials/navigation' as *;
-@use 'partials/hero-banner' as *;
+@use 'partials/bio-hero-banner' as *;
+@use 'partials/comment-section' as *;
 @use 'partials/footer' as *;
 
 
@@ -11,8 +12,7 @@
 // Main Content of Bio Page -- Biography Figure, Articles, Photo Gallery
 
 .main {
-    background-color: $primary-light-color;
-    padding: 1rem 1rem;
+    padding: 1rem 0;
     min-width: $mobile-breakpoint;
 
 
@@ -22,6 +22,7 @@
             width: 80%;
             margin-left: 10%;
         }
+
         @include desktop-breakpoint {
             width: 70%;
             margin-left: 15%;
@@ -56,6 +57,7 @@
             padding: 1.05em 0 0.75em;
             margin-left: 3%;
         }
+
         @include desktop-breakpoint {
             margin-left: 9%;
         }
@@ -84,6 +86,7 @@
                 margin-bottom: 2rem;
                 object-position: center center;
             }
+
             @include desktop-breakpoint {
                 height: 37vw;
 
@@ -110,10 +113,12 @@
 
     &__photo-gallery {
         background-color: $Alabaster;
+        padding: 0 1rem 1rem;
 
         @include tablet-breakpoint {
             padding: 1.5rem;
         }
+
         @include desktop-breakpoint {
             padding: 1.5rem 8rem 1.5rem;
         }
@@ -148,4 +153,9 @@
             }
         }
     }
+}
+
+.bio-section {
+    background-color: $primary-light-color;
+    padding: 0 1rem;
 }

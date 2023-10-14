@@ -1,0 +1,187 @@
+//Import Variables & Mixins
+@use 'variables.scss' as *;
+@use 'mixins.scss' as *;
+
+
+.comment-section {
+    background-color: $primary-light-color;
+    padding: 0 1rem;
+
+    &__title {
+        padding: 0.75rem 0;
+
+        @include tablet-breakpoint {
+            margin-left: 2%;
+            padding: 2rem 0 1.75rem;
+        }
+        @include desktop-breakpoint {
+            margin-left: 10%;
+            padding: 3rem 0 2rem;
+        }
+    }
+
+    &__user-comment {
+        display: flex;
+        flex-direction: row;
+        border-bottom: 1px solid $Mercury;
+        padding-bottom: 1rem;
+    }
+
+
+    &__form {
+        width: 100%;
+    }
+
+    &_comments{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    &__wrapper {
+        @include tablet-breakpoint {
+            width: 80%;
+            margin-left: 10%;
+            padding-bottom: 1rem;
+        }
+
+        @include desktop-breakpoint {
+            width: 40%;
+            margin-left: 30%;
+        }
+    }
+}
+
+
+.user-icon {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    object-position: center left;
+
+    @include tablet-breakpoint{
+        width: 48px;
+        height: 48px;
+    }
+}
+
+.user-icon-wrapper {
+    background-color: $Mercury;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    margin-right: 1rem;
+
+    @include tablet-breakpoint{
+        width: 48px;
+        height: 48px;
+    }
+}
+
+.commenter-icon {
+    margin-top: 1.125rem;
+}
+
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+
+    &__name-label {
+        color: $secondary-light-color;
+        font-weight: 400;
+    }
+
+    &__input-field {
+        margin-bottom: 1rem;
+        border-radius: 4px;
+        min-height: 36px;
+        border: 1px solid $Mercury;
+        padding: 12px; //style guide says 12, 8 matches mockup closer
+        background-color: $Alabaster;
+
+        @include tablet-breakpoint {
+            margin-bottom: 1.25rem;
+        }
+
+        &::placeholder {
+            color: $BandSite-DarkBlack;
+        }
+    }
+
+    &__input-name {
+        height: 36px;
+    }
+}
+
+
+.CTA-button {
+    background-color: $primary-dark-color;
+    color: $primary-light-color;
+    height: 40px;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    padding-top: 3px;
+    transition: transform 0.2s ease;
+
+    @include tablet-breakpoint{
+        width: 165px;
+        padding-left: 32px;
+        padding-right: 32px;
+        margin: 0.25rem 0 0.5rem auto;
+    }
+
+    &:hover {
+        background-color: $BandSite-DarkBlack;
+        cursor: pointer;
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+}
+
+.comment {
+    display: flex;
+    padding: 1rem 0;
+    border-bottom: 1px solid $Mercury;
+    position: relative;
+
+    @include tablet-breakpoint {
+        padding: 1.75rem 0 1rem;
+    }
+
+    &-body {
+
+        &__name {
+            margin-bottom: 0.625rem;
+            font-weight: 600;
+
+            @include tablet-breakpoint {
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        &__date {
+            position: absolute;
+            top: 1rem;
+            right: 0;
+            font-size: 0.8rem;
+            color: $secondary-light-color;
+
+            @include tablet-breakpoint {
+                top: 2rem;
+            }
+        }
+
+        &__text {
+            color: $BandSite-DarkBlack;
+        }
+
+        @include tablet-breakpoint {
+            margin-bottom: 0.5rem;
+        }
+    }
+}
