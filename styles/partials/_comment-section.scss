@@ -3,6 +3,7 @@
 @use 'mixins.scss' as *;
 
 
+// ----- Comment Section Styling -----
 .comment-section {
     background-color: $primary-light-color;
     padding: 0 1rem;
@@ -15,6 +16,7 @@
             margin-left: 2%;
             padding: 2.5rem 0 1.75rem;
         }
+
         @include desktop-breakpoint {
             margin-left: 10%;
             padding: 3rem 0 2rem;
@@ -28,12 +30,11 @@
         padding-bottom: 1rem;
     }
 
-
     &__form {
         width: 100%;
     }
 
-    &_comments{
+    &_comments {
         display: flex;
         flex-direction: column-reverse;
     }
@@ -52,38 +53,7 @@
     }
 }
 
-
-.user-icon {
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    object-fit: cover;
-    object-position: 20% center;
-
-    @include tablet-breakpoint{
-        width: 48px;
-        height: 48px;
-    }
-}
-
-.user-icon-wrapper {
-    background-color: $Mercury;
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    margin-right: 1rem;
-
-    @include tablet-breakpoint{
-        width: 48px;
-        height: 48px;
-    }
-}
-
-.commenter-icon {
-    margin-top: 1.125rem;
-}
-
-
+// --- Comment Submission Form Styling ---
 .comment-form {
     display: flex;
     flex-direction: column;
@@ -104,6 +74,7 @@
         @include tablet-breakpoint {
             margin-bottom: 1.25rem;
         }
+
         &::placeholder {
             color: $BandSite-DarkBlack;
         }
@@ -123,7 +94,6 @@
     }
 }
 
-
 .CTA-button {
     background-color: $primary-dark-color;
     color: $Mercury; //Style guide said to use $Silver, but Mercury matches the Mockup much closer
@@ -135,7 +105,7 @@
     padding-top: 3px;
     transition: transform 0.2s ease;
 
-    @include tablet-breakpoint{
+    @include tablet-breakpoint {
         width: 165px;
         padding-left: 32px;
         padding-right: 32px;
@@ -153,6 +123,40 @@
     }
 }
 
+
+// --- User Icon Picture styling ---
+.user-icon {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    object-position: 20% center;
+
+    @include tablet-breakpoint {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+.user-icon-wrapper {
+    background-color: $Mercury;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    margin-right: 1rem;
+
+    @include tablet-breakpoint {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+.commenter-icon {
+    margin-top: 1.125rem;
+}
+
+
+// Individual Generated Comments styling
 .comment {
     display: flex;
     padding: 1rem 0;
@@ -164,6 +168,9 @@
     }
 
     &-body {
+        @include tablet-breakpoint {
+            margin-bottom: 0.5rem;
+        }
 
         &__name {
             margin-bottom: 0.625rem;
@@ -190,8 +197,5 @@
             color: $BandSite-DarkBlack;
         }
 
-        @include tablet-breakpoint {
-            margin-bottom: 0.5rem;
-        }
     }
 }

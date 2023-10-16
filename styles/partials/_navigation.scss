@@ -24,7 +24,6 @@
         @include tablet-breakpoint {
             padding: 1.75rem 2rem 1.25rem 2rem;
         }
-
         @include desktop-breakpoint {
             margin-left: 7.5em;
             margin-top: 1em;
@@ -50,7 +49,7 @@
         }
 
 
-        &__item {
+        &-item {
             list-style-type: none;
             text-align: center;
             width: 50%;
@@ -72,7 +71,7 @@
             &--active {
                 border-bottom: 3.3px solid $primary-light-color; //Gives the active nav list item a visible border color
 
-                .main-nav__list__link {
+                .main-nav__list-link {
                     color: $primary-light-color;
                     font-weight: 600;
                 }
@@ -81,7 +80,7 @@
         }
 
 
-        &__link {
+        &-link {
             color: $Mercury;
         }
     }

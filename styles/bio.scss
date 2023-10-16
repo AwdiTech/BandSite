@@ -4,6 +4,7 @@
 
 @use 'partials/navigation' as *;
 @use 'partials/bio-hero-banner' as *;
+@use 'partials/photo-gallery' as *;
 @use 'partials/comment-section' as *;
 @use 'partials/footer' as *;
 
@@ -15,14 +16,11 @@
     padding: 0.5rem 0 1rem;
     min-width: $mobile-breakpoint;
 
-
     &-section {
-
         @include tablet-breakpoint {
             width: 80%;
             margin-left: 10%;
         }
-
         @include desktop-breakpoint {
             width: 70%;
             margin-left: 15%;
@@ -30,7 +28,7 @@
     }
 
 
-    &__bio {
+    &-bio {
         padding-bottom: 1.5rem;
 
         @include tablet-breakpoint {
@@ -49,7 +47,6 @@
         }
     }
 
-
     &__bio-title {
         padding: 0.75rem 0;
 
@@ -62,7 +59,6 @@
             margin-left: 9%;
         }
     }
-
 
     &__bio-subtitle {
         padding: 0.5rem 0 1em;
@@ -108,52 +104,8 @@
                 margin-bottom: 1.5em;
                 font-size: 1em;
             }
-
-        }
-    }
-
-
-    &__photo-gallery {
-        background-color: $Alabaster;
-        padding: 0 1rem 1rem;
-
-        @include tablet-breakpoint {
-            padding: 1.5rem;
         }
 
-        @include desktop-breakpoint {
-            padding: 1.5rem 8rem 1.5rem;
-        }
-
-
-        &__title {
-            padding: 1em 0;
-
-        }
-
-
-        &__photos {
-            display: grid;
-            gap: 1rem;
-            grid-template-columns: 1fr;
-
-            @include tablet-breakpoint {
-                grid-template-columns: repeat(3, 1fr);
-                // This creates three equal columns. 1fr = 1 fraction of available space for each column
-                gap: 1.5rem;
-            }
-
-
-            &__item {
-                width: 100%;
-                filter: grayscale(100%);
-                transition: filter 0.3s ease-in-out;
-
-                &:hover {
-                    filter: grayscale(0%);
-                }
-            }
-        }
     }
 }
 

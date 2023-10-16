@@ -3,7 +3,7 @@
 @use 'variables' as *;
 
 
-// Hero Banner Styling -- Image and Text
+// ----- Shows Page - Hero Banner Styling -- Image, Text, and Soundcloud Player -----
 
 .hero-banner {
     background-image: linear-gradient(rgba($primary-dark-color, 0.5),
@@ -38,17 +38,6 @@
         justify-content: center;
     }
 
-    h3 {
-
-        @include tablet-breakpoint {
-            font-weight: 600;
-        }
-    }
-
-    h3 {
-        font-weight: 400;
-    }
-
     &-main {
         display: flex;
         flex-direction: column;
@@ -56,7 +45,6 @@
         width: 70%;
         margin-left: 5%;
         padding-top: 1.75rem;
-
 
         @include tablet-breakpoint {
             width: 75%;
@@ -72,8 +60,6 @@
         }
 
 
-        //&__h1 {}
-
         &__h3 {
             font-weight: 400;
 
@@ -85,12 +71,12 @@
     }
 }
 
+
 .soundcloud-player {
     width: 100%;
     height: 100%;
     max-width: 500px;
     max-height: 160px;
-
 
     @include tablet-breakpoint {
         height: 160px;
@@ -110,7 +96,6 @@
     padding: 1rem 0rem 1.5rem;
     margin: 0 5%;
 
-    
     @include tablet-breakpoint {
         padding-top: 3vw;
         margin-bottom: -3vw;
