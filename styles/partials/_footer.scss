@@ -29,6 +29,11 @@
 
     &__title {
         font-weight: 600;
+        padding-top: 0;
+
+        @include tablet-breakpoint {
+            padding-top: 0.5rem;
+        }
     }
 
 

@@ -175,6 +175,7 @@ button {
   width: 50%;
   padding-bottom: 0.625rem;
   border-bottom: 3.3px solid rgba(0, 0, 0, 0);
+  min-width: 60px;
 }
 @media screen and (min-width: 768px) {
   .main-nav__list__item {
@@ -302,20 +303,22 @@ button {
 }
 @media screen and (min-width: 768px) {
   .soundcloud-player {
-    width: 60%;
     height: 160px;
+    width: 450px;
   }
 }
 @media screen and (min-width: 1280px) {
   .soundcloud-player {
-    width: 80%;
+    width: 500px;
     height: 166px;
-    max-width: 500px;
   }
 }
 
 .soundcloud-wrapper {
   height: 50%;
+  width: 50vw;
+  min-width: 280px;
+  max-width: 500px;
   padding: 1rem 0rem 1.5rem;
   margin: 0 5%;
 }
@@ -359,6 +362,12 @@ button {
 }
 .footer__title {
   font-weight: 600;
+  padding-top: 0;
+}
+@media screen and (min-width: 768px) {
+  .footer__title {
+    padding-top: 0.5rem;
+  }
 }
 @media screen and (min-width: 768px) {
   .footer-top {

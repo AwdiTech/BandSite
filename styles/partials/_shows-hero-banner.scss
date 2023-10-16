@@ -93,18 +93,20 @@
 
 
     @include tablet-breakpoint {
-        width: 60%;
         height: 160px;
+        width: 450px;
     }
     @include desktop-breakpoint {
-        width: 80%;
+        width: 500px;
         height: 166px;
-        max-width: 500px;
     }
 }
 
 .soundcloud-wrapper {
     height: 50%;
+    width: 50vw;
+    min-width: 280px;
+    max-width: 500px;
     padding: 1rem 0rem 1.5rem;
     margin: 0 5%;
 

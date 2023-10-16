@@ -2,7 +2,7 @@
 // Includes:
 //  - function reloadCommentsWith(commentObjectArray) -- function to load/reload all comments on page
 //  - function displayComment(commentObject) -- function to display a new comment from user
-//  - function getCurrentDate() -- returns the date in "DD/MM/YYYY format"
+//  - function calculateTimeAgo() -- returns the date in dynamic time if recent or in "DD/MM/YYYY format"
 //  - function hideMissingUserIcons() -- a function to hide img elements with no src attribute to prevent no picture defaults
 
 
@@ -36,7 +36,7 @@ function reloadCommentsWith(commentObjectArray) {
         userIconImage.src = commentDataObject.iconPictureSrc;
         commentBodyName.textContent = commentDataObject.name;
         commentBodyText.textContent = commentDataObject.comment;
-        commentBodyDate.textContent = commentDataObject.date;
+        commentBodyDate.textContent = calculateTimeAgo(commentDataObject.date);
         
         userIconWrapper.appendChild(userIconImage);
         comment.appendChild(userIconWrapper);
@@ -60,14 +60,36 @@ function displayComment(commentObject) {
 }
 
 
-function getCurrentDate() {
-    const presentDate = new Date();
+function calculateTimeAgo(date) {
+    const now = new Date();
+    const seconds = Math.round((now - date) / 1000) // Date is stored in miliseconds, and there are 1000 miliseconds in 1 second
+    const minutes = Math.round(seconds / 60);
+    const hours = Math.round(minutes / 60);
+    const days = Math.round(hours / 24);
+    const weeks = Math.round(days / 7);
+    const months = Math.round(weeks / 4.345) // 4.345 is the average number of weeks in a month
+    const years = Math.round(days / 365);
 
-    const day = String(presentDate.getDate()).padStart(2, '0');
-    const month = String(presentDate.getMonth() + 1).padStart(2, '0');
-    const year = presentDate.getFullYear()
+    if (seconds < 60) {
+        return `${seconds} seconds ago`;
+    } else if (minutes < 60) {
+        return `${minutes} minutes ago`;
+    } else if (hours < 24) {
+        return `${hours} hours ago`;
+    } else if (days < 7) {
+        return `${days} days ago`;
+    } else if (weeks <= 4) {
+        return `${weeks} weeks ago`;
+    } else if (months < 12) {
+        return `${months} months ago`;
+    } else {
+        const day = String(date.getDate() + 1).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear()
 
-    return `${day}/${month}/${year}`;
+        return `${month}/${day}/${year}`;
+    }
+
 }
 
 
@@ -85,25 +107,25 @@ function hideMissingUserIcons() {
 const commentObjects = [
     {
         name: 'Connor Walton',
-        date: '02/17/2021',
+        date: new Date('2021-02-17'),
         comment: 'This is art. This is inexplicable magic expressed in the purest way, everything that makes up this majestic work deserves reverence. Let us appreciate this for what it is and what it contains.',
         iconPictureSrc: ""
     },
     {
         name: 'Emilie Beach',
-        date: '01/09/2021',
+        date: new Date('2021-01-09'),
         comment: 'I feel blessed to have seen them in person. What a show! They were just perfection. If there was one day of my life I could relive, this would be it. What an incredible day.',
         iconPictureSrc: ""
     },
     {
         name: 'Miles Acosta',
-        date: '12/20/2020',
+        date: new Date('2020-12-20'),
         comment: "I can't stop listening. Every time I hear one of their songs - the vocals - it gives me goosebumps. Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough.",
         iconPictureSrc: ""
     }
 ];
 
-
+// Adding Event Listener for Comment Submission
 const commentForm = document.querySelector('.comment-form')
 
 commentForm.addEventListener('submit', function (e) {
@@ -113,11 +135,26 @@ commentForm.addEventListener('submit', function (e) {
     const iconImageSrc = document.querySelector('.commenter-icon img').src;
 
     const newCommentObj = {name: formData.get('name'), comment: formData.get('comment'),
-        date: getCurrentDate(), iconPictureSrc: iconImageSrc};
+        date: new Date(), iconPictureSrc: iconImageSrc};
 
-    displayComment(newCommentObj);
+    if (!newCommentObj['name'].trim()) {
+        document.querySelector('.comment-form__input-name').classList.add('comment-form__input-field--error');
+    }
+    if (!newCommentObj['comment'].trim()) {
+        document.querySelector('.comment-form__input-comment').classList.add('comment-form__input-field--error');
+    }
 
-    this.reset();
+    if (newCommentObj['comment'].trim() && newCommentObj['name'].trim()) {
+        document.querySelector('.comment-form__input-name').classList.remove('comment-form__input-field--error');
+        document.querySelector('.comment-form__input-comment').classList.remove('comment-form__input-field--error');
+
+        displayComment(newCommentObj);
+        this.reset();
+    }
+
+    
 });
+
+
 
 reloadCommentsWith(commentObjects); //initial comments loading

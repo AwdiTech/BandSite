@@ -6,13 +6,14 @@
 .comment-section {
     background-color: $primary-light-color;
     padding: 0 1rem;
+    min-width: 320px;
 
     &__title {
         padding: 0.75rem 0;
 
         @include tablet-breakpoint {
             margin-left: 2%;
-            padding: 2rem 0 1.75rem;
+            padding: 2.5rem 0 1.75rem;
         }
         @include desktop-breakpoint {
             margin-left: 10%;
@@ -57,7 +58,7 @@
     width: 36px;
     height: 36px;
     object-fit: cover;
-    object-position: center left;
+    object-position: 20% center;
 
     @include tablet-breakpoint{
         width: 48px;
@@ -103,9 +104,17 @@
         @include tablet-breakpoint {
             margin-bottom: 1.25rem;
         }
-
         &::placeholder {
             color: $BandSite-DarkBlack;
+        }
+
+        &:focus {
+            outline: none;
+            border: 1px solid $primary-dark-color;
+        }
+
+        &--error {
+            border: 1px solid #D22D2D;
         }
     }
 
@@ -117,11 +126,11 @@
 
 .CTA-button {
     background-color: $primary-dark-color;
-    color: $primary-light-color;
+    color: $Mercury; //Style guide said to use $Silver, but Mercury matches the Mockup much closer
     height: 40px;
     border-radius: 4px;
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: 0.95rem;
+    font-weight: 600;
     border: none;
     padding-top: 3px;
     transition: transform 0.2s ease;
@@ -140,6 +149,7 @@
 
     &:active {
         transform: scale(0.95);
+        color: $primary-light-color;
     }
 }
 

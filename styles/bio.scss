@@ -12,7 +12,7 @@
 // Main Content of Bio Page -- Biography Figure, Articles, Photo Gallery
 
 .main {
-    padding: 1rem 0;
+    padding: 0.5rem 0 1rem;
     min-width: $mobile-breakpoint;
 
 
@@ -54,7 +54,7 @@
         padding: 0.75rem 0;
 
         @include tablet-breakpoint {
-            padding: 1.05em 0 0.75em;
+            padding: 1.25em 0 0.75em;
             margin-left: 3%;
         }
 
@@ -102,9 +102,11 @@
 
         &__quote-author {
             padding: 0.75rem 0 1.25rem;
+            font-size: 14px;
 
             @include tablet-breakpoint {
                 margin-bottom: 1.5em;
+                font-size: 1em;
             }
 
         }

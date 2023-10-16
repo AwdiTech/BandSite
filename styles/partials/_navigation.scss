@@ -55,8 +55,8 @@
             text-align: center;
             width: 50%;
             padding-bottom: 0.625rem;
-            border-bottom: 3.3px solid rgba(0, 0, 0, 0); //An invisible border on the other nav list items to keep the nav list items with hover effects
-
+            border-bottom: 3.3px solid rgba(0, 0, 0, 0); //An invisible border on the other nav list items to keep the nav list items aligned with hover effects
+            min-width: 60px;
 
             @include tablet-breakpoint {
                 margin-top: 2.2em;
