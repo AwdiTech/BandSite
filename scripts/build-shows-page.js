@@ -1,7 +1,11 @@
 //Shows page JavaScript
+// Includes:
+// - function loadShows(showsArray) -- function to load/reload all shows on page
+// - function getShows() -- This function makes the GET API call for the show data
+// - function getDateString(timestamp) -- This function returns a date string in the format "Day Month DD YYYY"
 
 
-// NOTE: EDIT "- Be sure to create the entire show table using DOM manipulation. 
+// NOTE: EDIT - Feedback says "- Be sure to create the entire show table using DOM manipulation. 
 //        This includes the "dates", "venue", and "location" table headers"
 function loadShows(showsArray) {
 
@@ -26,8 +30,8 @@ function loadShows(showsArray) {
         cardLocation.classList.add('event-card__location');
         cardCTAButton.classList.add('event-card__CTA-button');
 
-        cardDate.textContent = showObject['date'];
-        cardVenue.textContent = showObject['venue'];
+        cardDate.textContent = getDateString(showObject['date']);
+        cardVenue.textContent = showObject['place'];
         cardLocation.textContent = showObject['location'];
 
         cardDateSubtitle.textContent = "DATE";
@@ -62,38 +66,35 @@ function loadShows(showsArray) {
     });
 }
 
-const shows = [
-    {
-        date: "Mon Sept 06 2021",
-        venue: "Ronald Lane",
-        location: "San Francisco, CA"
-    },
-    {
-        date: "Tues Sept 21 2021",
-        venue: "Pier 3 East",
-        location: "San Francisco, CA"
-    },
-    {
-        date: "Fri Oct 15 2021",
-        venue: "View Lounge",
-        location: "San Francisco, CA"
-    },
-    {
-        date: "Sat Nov 6 2021",
-        venue: "Hyatt Agency",
-        location: "San Francisco, CA"
-    },
-    {
-        date: "Fri Nov 26 2021",
-        venue: "Moscow Center",
-        location: "San Francisco, CA"
-    },
-    {
-        date: "Wed Dec 15, 2021",
-        venue: "Press Club",
-        location: "San Francisco, CA"
-    }
-];
+
+let shows = [];
+
+function getShows() {
+    axios.get("https://project-1-api.herokuapp.com/showdates?api_key=7de1682c-6a04-45d4-933e-e386aa8d3102").then( (result) => {
+        shows = result.data;
+        loadShows(shows);
+    })
+    .catch( (error) => {
+        console.log(error);
+    });
+    
+}
 
 
-loadShows(shows);
+function getDateString(timestamp) {
+    let date = new Date(timestamp);
+
+    const daysOfTheWeek = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+
+    let weekday = daysOfTheWeek[date.getDay()];
+    let day = date.getDate();
+    let month = months[date.getMonth()];
+    let year = date.getFullYear();
+
+    return `${weekday} ${month} ${day} ${year}`;
+}
+
+
+
+getShows();

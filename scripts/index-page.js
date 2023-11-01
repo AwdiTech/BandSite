@@ -113,7 +113,7 @@ function hideMissingUserIcons() {
         "timestamp": 1613538000000
     },
 */
-let commentData = {};
+let commentData = [];
 
 function getComments() {
 axios.get("https://project-1-api.herokuapp.com/comments?api_key=7de1682c-6a04-45d4-933e-e386aa8d3102")
