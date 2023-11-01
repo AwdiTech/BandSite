@@ -1,7 +1,8 @@
 //Shows page JavaScript
 
 
-
+// NOTE: EDIT "- Be sure to create the entire show table using DOM manipulation. 
+//        This includes the "dates", "venue", and "location" table headers"
 function loadShows(showsArray) {
 
     const showsList = document.querySelector('.shows-list');
