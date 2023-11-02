@@ -81,8 +81,8 @@ function reloadCommentsWith(commentObjectArray) {
 
 
 function addComment(commentObject) {
-    axios.post("https://project-1-api.herokuapp.com/comments?api_key=7de1682c-6a04-45d4-933e-e386aa8d3102", commentObject).then(
-        getComments)
+    axios.post("https://project-1-api.herokuapp.com/comments?api_key=7de1682c-6a04-45d4-933e-e386aa8d3102", commentObject)
+    .then( getComments )
     .catch((error) => console.log(error));
 }
 

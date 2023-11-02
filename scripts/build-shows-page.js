@@ -5,11 +5,34 @@
 // - function getDateString(timestamp) -- This function returns a date string in the format "Day Month DD YYYY"
 
 
-// NOTE: EDIT - Feedback says "- Be sure to create the entire show table using DOM manipulation. 
-//        This includes the "dates", "venue", and "location" table headers"
 function loadShows(showsArray) {
 
     const showsList = document.querySelector('.shows-list');
+
+    // Shows Table Subtitles Row Construction (It's only visible in tablet or higher screen sizes)
+    const showsListSubtitlesRow = document.createElement('article');
+    const dateSubtitle = document.createElement('p');
+    const venueSubtitle = document.createElement('p');
+    const locationSubtitle = document.createElement('p');
+    const emptyBlock = document.createElement('p');
+
+    showsListSubtitlesRow.classList.add('shows-list__subtitles-row');
+    dateSubtitle.classList.add('event-card__subtitle', 'visbile-block');
+    venueSubtitle.classList.add('event-card__subtitle', 'visbile-block');
+    locationSubtitle.classList.add('event-card__subtitle', 'visbile-block');
+
+    dateSubtitle.textContent = "DATE";
+    venueSubtitle.textContent = "VENUE";
+    locationSubtitle.textContent = "LOCATION";
+
+    showsListSubtitlesRow.append(dateSubtitle);
+    showsListSubtitlesRow.append(venueSubtitle);
+    showsListSubtitlesRow.append(locationSubtitle);
+    showsListSubtitlesRow.append(emptyBlock);
+
+    showsList.append(showsListSubtitlesRow);
+
+    
 
     showsArray.forEach((showObject) => {
         const eventCard = document.createElement('article');
