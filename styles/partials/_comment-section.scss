@@ -204,7 +204,7 @@
         &__likes {
             position: absolute;
             bottom: 0.4rem;
-            right: 0.5rem;
+            right: 3rem;
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -215,17 +215,24 @@
 
             @include tablet-breakpoint {
                 bottom: 0.5rem;
-                right: 1rem;
-            }
-            @include desktop-breakpoint {
-                bottom: 0.5rem;
-                right: 0.5rem;
             }
 
             &-count {
                 margin-bottom: -0.25rem;
                 font-size: 0.8rem;
                 color: green;
+            }
+        }
+
+        &__delete {
+            position: absolute;
+            bottom: 0.4rem;
+            right: 0.5rem;
+            height: 16px;
+            cursor: pointer;
+        
+            @include tablet-breakpoint {
+                bottom: 0.5rem;
             }
         }
 

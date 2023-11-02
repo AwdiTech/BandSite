@@ -29,6 +29,7 @@ function reloadCommentsWith(commentObjectArray) {
         const commentBodyLikes = document.createElement('div');
         const commentBodyLikesCount = document.createElement('p');
         const commentBodyLikesIcon = document.createElement('img');
+        const commentBodyDeleteIcon = document.createElement('img');
 
         comment.classList.add('comment');
         comment.setAttribute('data-id', commentDataObject.id);
@@ -43,6 +44,8 @@ function reloadCommentsWith(commentObjectArray) {
         commentBodyLikesCount.classList.add('comment-body__likes-count');
         commentBodyLikesCount.setAttribute('data-id', commentDataObject.id);
         commentBodyLikesIcon.classList.add('comment-body__likes-icon');
+        commentBodyDeleteIcon.classList.add('comment-body__delete');
+
 
         userIconImage.src = "";
         commentBodyName.textContent = commentDataObject.name;
@@ -50,6 +53,7 @@ function reloadCommentsWith(commentObjectArray) {
         commentBodyDate.textContent = calculateTimeAgo(commentDataObject.timestamp);
         commentBodyLikesCount.textContent = commentDataObject.likes;
         commentBodyLikesIcon.src = "/assets/icons/svg/icon-like.svg";
+        commentBodyDeleteIcon.src = "/assets/icons/svg/icon-delete.svg";
 
         userIconWrapper.appendChild(userIconImage);
         comment.appendChild(userIconWrapper);
@@ -61,6 +65,7 @@ function reloadCommentsWith(commentObjectArray) {
         commentBodyLikes.appendChild(commentBodyLikesIcon);
         commentBodyLikes.appendChild(commentBodyLikesCount);
         commentBody.appendChild(commentBodyLikes);
+        commentBody.appendChild(commentBodyDeleteIcon);
 
         comment.appendChild(commentBody);
 
@@ -68,6 +73,7 @@ function reloadCommentsWith(commentObjectArray) {
         
         
         commentBodyLikes.addEventListener('click', () => likeComment(commentDataObject.id) );     
+        commentBodyDeleteIcon.addEventListener('click', () => deleteComment(commentDataObject.id));
     });
 
     hideMissingUserIcons();
@@ -75,7 +81,6 @@ function reloadCommentsWith(commentObjectArray) {
 
 
 function addComment(commentObject) {
-    console.log(commentObject);
     axios.post("https://project-1-api.herokuapp.com/comments?api_key=7de1682c-6a04-45d4-933e-e386aa8d3102", commentObject).then(
         getComments)
     .catch((error) => console.log(error));
@@ -123,15 +128,11 @@ function hideMissingUserIcons() {
 }
 
 
-let commentData = [];
-
 function getComments() {
     axios.get("https://project-1-api.herokuapp.com/comments?api_key=7de1682c-6a04-45d4-933e-e386aa8d3102")
         .then((data) => {
             commentData = data.data;
-
             commentData.sort((a, b) => b.timestamp - a.timestamp);
-            console.log(commentData);
         },
             (error) => {
                 console.log(error);
@@ -158,9 +159,8 @@ function likeComment(commentId) {
         commentLikesCounter.innerText = commentData[commentIndex].likes;
 
         axios.put("https://project-1-api.herokuapp.com/comments/" + commentId + "/like?api_key=7de1682c-6a04-45d4-933e-e386aa8d3102")
-            .then((result) => {
-                console.log(result);
-
+            .then( () => {
+                 // Successful PUT request, no action required as the like count was updated preemptively
             })
             .catch((error) => {
                 console.error(`Error updating likes for comment ID ${commentId}:`, error);
@@ -173,6 +173,25 @@ function likeComment(commentId) {
     }
 }
 
+
+function deleteComment(commentId) {
+
+    axios.delete("https://project-1-api.herokuapp.com/comments/" + commentId + "?api_key=7de1682c-6a04-45d4-933e-e386aa8d3102")
+    .then( (success) => {
+
+        //Remove the comment from commentData locally, and then remove comment from DOM locally
+        //This prevents the need to make another GET API call and to reload all the comments
+        commentData = commentData.filter( comment => comment.id !== commentId);
+
+        comment = document.querySelector(`.comment[data-id="${commentId}"`);
+        if (comment) {
+            comment.parentElement.removeChild(comment);
+        }
+    })
+    .catch( (error) => {
+        console.error(`Error deleting comment with ID ${commentId}: ${error}`);
+    });
+}
 
 
 // Adding Event Listener for Comment Submission
@@ -200,8 +219,9 @@ commentForm.addEventListener('submit', function (e) {
         this.reset();
     }
 
-
 });
 
+
+let commentData = []; //Initialize empty commentData array
 
 getComments();  //initial comments loading
