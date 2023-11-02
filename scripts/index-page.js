@@ -5,6 +5,7 @@
 //  - function calculateTimeAgo() -- returns the date in dynamic time if recent or in "DD/MM/YYYY format"
 //  - function hideMissingUserIcons() -- a function to hide img elements with no src attribute to prevent no picture defaults
 //  - function getComments() -- This function makes the GET API call for the comment data
+//  - function likeComment() -- This function uses the PUT API method to increment likes
 
 
 function reloadCommentsWith(commentObjectArray) {
@@ -25,8 +26,12 @@ function reloadCommentsWith(commentObjectArray) {
         const commentBodyName = document.createElement('p');
         const commentBodyText = document.createElement('p');
         const commentBodyDate = document.createElement('p');
+        const commentBodyLikes = document.createElement('div');
+        const commentBodyLikesCount = document.createElement('p');
+        const commentBodyLikesIcon = document.createElement('img');
 
         comment.classList.add('comment');
+        comment.setAttribute('data-id', commentDataObject.id);
         userIconWrapper.classList.add('user-icon-wrapper');
         userIconImage.classList.add('user-icon');
         commentBody.classList.add('comment-body');
@@ -34,11 +39,18 @@ function reloadCommentsWith(commentObjectArray) {
         commentBodyText.classList.add('comment-body__text');
         commentBodyDate.classList.add('comment-body__date');
 
+        commentBodyLikes.classList.add('comment-body__likes');
+        commentBodyLikesCount.classList.add('comment-body__likes-count');
+        commentBodyLikesCount.setAttribute('data-id', commentDataObject.id);
+        commentBodyLikesIcon.classList.add('comment-body__likes-icon');
+
         userIconImage.src = "";
         commentBodyName.textContent = commentDataObject.name;
         commentBodyText.textContent = commentDataObject.comment;
         commentBodyDate.textContent = calculateTimeAgo(commentDataObject.timestamp);
-        
+        commentBodyLikesCount.textContent = commentDataObject.likes;
+        commentBodyLikesIcon.src = "/assets/icons/svg/icon-like.svg";
+
         userIconWrapper.appendChild(userIconImage);
         comment.appendChild(userIconWrapper);
 
@@ -46,9 +58,16 @@ function reloadCommentsWith(commentObjectArray) {
         commentBody.appendChild(commentBodyText);
         commentBody.appendChild(commentBodyDate);
 
+        commentBodyLikes.appendChild(commentBodyLikesIcon);
+        commentBodyLikes.appendChild(commentBodyLikesCount);
+        commentBody.appendChild(commentBodyLikes);
+
         comment.appendChild(commentBody);
 
-        commentSection.appendChild(comment);
+        commentSection.appendChild(comment);   
+        
+        
+        commentBodyLikes.addEventListener('click', () => likeComment(commentDataObject.id) );     
     });
 
     hideMissingUserIcons();
@@ -58,8 +77,8 @@ function reloadCommentsWith(commentObjectArray) {
 function addComment(commentObject) {
     console.log(commentObject);
     axios.post("https://project-1-api.herokuapp.com/comments?api_key=7de1682c-6a04-45d4-933e-e386aa8d3102", commentObject).then(
-        getComments
-    ).catch((error)=> console.log(error));
+        getComments)
+    .catch((error) => console.log(error));
 }
 
 
@@ -87,7 +106,7 @@ function calculateTimeAgo(date) {
         return `${months} months ago`;
     } else {
 
-        return commentDate.toLocaleString('en-US', {day: "2-digit", month: "2-digit", year: "numeric"} );
+        return commentDate.toLocaleString('en-US', { day: "2-digit", month: "2-digit", year: "numeric" });
     }
 
 }
@@ -104,34 +123,55 @@ function hideMissingUserIcons() {
 }
 
 
-/* API Comment Object format
-    {
-        "name": "Connor Walton",
-        "comment": "This is art. This is inexplicable magic expressed in the purest way, everything that makes up this majestic work deserves reverence. Let us appreciate this for what it is and what it contains.",
-        "id": "bb788bd2-8a46-4d28-9252-9a0b57811850",
-        "likes": 0,
-        "timestamp": 1613538000000
-    },
-*/
 let commentData = [];
 
 function getComments() {
-axios.get("https://project-1-api.herokuapp.com/comments?api_key=7de1682c-6a04-45d4-933e-e386aa8d3102")
-    .then((data) => {
-        commentData = data.data;
+    axios.get("https://project-1-api.herokuapp.com/comments?api_key=7de1682c-6a04-45d4-933e-e386aa8d3102")
+        .then((data) => {
+            commentData = data.data;
 
-        commentData.sort( (a, b) => b.timestamp - a.timestamp);
-        console.log(commentData);
-    },
-        (error) => {
-            console.log(error);
-        }
-    )
-    .then( () =>
-        reloadCommentsWith(commentData) //initial comments loading
-    )
+            commentData.sort((a, b) => b.timestamp - a.timestamp);
+            console.log(commentData);
+        },
+            (error) => {
+                console.log(error);
+            }
+        )
+        .then(() =>
+            reloadCommentsWith(commentData) //initial comments loading
+        )
 }
 
+
+function likeComment(commentId) {
+
+    let commentIndex = commentData.findIndex(x => x.id === commentId);
+
+    if (commentData[commentIndex]) {
+
+        // Here I increment like count both locally and in DOM preemptively to avoid waiting for server response
+        // To do this, I introduced a new `data-id` attribute for the HTML likes counter element.
+        // This allows me to avoid reloading every comment, everytime a like is made.
+        // And if the PUT API call fails, then the like is easily subtracted locally and in the DOM
+        commentData[commentIndex].likes++;
+        commentLikesCounter = document.querySelector(`.comment-body__likes-count[data-id="${commentId}"`);
+        commentLikesCounter.innerText = commentData[commentIndex].likes;
+
+        axios.put("https://project-1-api.herokuapp.com/comments/" + commentId + "/like?api_key=7de1682c-6a04-45d4-933e-e386aa8d3102")
+            .then((result) => {
+                console.log(result);
+
+            })
+            .catch((error) => {
+                console.error(`Error updating likes for comment ID ${commentId}:`, error);
+                //If API PUT call fails, then we remove the preemptive like increment
+                commentData[commentIndex].likes--;
+                commentLikesCounter.innerText = commentData[commentIndex].likes;
+            });
+    } else {
+        console.error("Error: Comment Not found. Comment Like failed...");
+    }
+}
 
 
 
@@ -142,9 +182,8 @@ commentForm.addEventListener('submit', function (e) {
     e.preventDefault();
 
     const formData = new FormData(this);
-    // const iconImageSrc = document.querySelector('.commenter-icon img').src;
 
-    const newCommentObj = {name: formData.get('name'), comment: formData.get('comment')};
+    const newCommentObj = { name: formData.get('name'), comment: formData.get('comment') };
 
     if (!newCommentObj['name'].trim()) {
         document.querySelector('.comment-form__input-name').classList.add('comment-form__input-field--error');
@@ -161,9 +200,8 @@ commentForm.addEventListener('submit', function (e) {
         this.reset();
     }
 
-    
+
 });
 
 
-getComments();
-// reloadCommentsWith(commentObjects); //initial comments loading
+getComments();  //initial comments loading

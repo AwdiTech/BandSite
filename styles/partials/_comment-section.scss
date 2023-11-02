@@ -163,7 +163,7 @@
 // Individual Generated Comments styling
 .comment {
     display: flex;
-    padding: 1rem 0;
+    padding: 1.5rem 0;
     border-bottom: 1px solid $Mercury;
     position: relative;
 
@@ -193,12 +193,40 @@
             color: $secondary-light-color;
 
             @include tablet-breakpoint {
-                top: 2rem;
+                top: 1.4rem;
             }
         }
 
         &__text {
             color: $BandSite-DarkBlack;
+        }
+
+        &__likes {
+            position: absolute;
+            bottom: 0.4rem;
+            right: 0.5rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            cursor: pointer;
+
+
+            @include tablet-breakpoint {
+                bottom: 0.5rem;
+                right: 1rem;
+            }
+            @include desktop-breakpoint {
+                bottom: 0.5rem;
+                right: 0.5rem;
+            }
+
+            &-count {
+                margin-bottom: -0.25rem;
+                font-size: 0.8rem;
+                color: green;
+            }
         }
 
     }
